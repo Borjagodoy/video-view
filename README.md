@@ -1,5 +1,5 @@
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/owner/my-element)
 # \<video-view\>
-
 The video view, search play all urls form youtube, vimeo or url with extensions .mp4 or webm. for example:
 
 ### Youtube video
@@ -28,6 +28,21 @@ Use the tag component
 ```html
 <video-view url="url-video" height="height-box" width="width-box"></video-view>
 ```
+
+<!--
+```
+<custom-element-demo>
+  <template>
+    <link rel="import" href="video-view.html">
+    <video-view url="https://www.youtube.com/watchv=G1TS_5ck0nw"></video-view>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<video-view></video-view>
+```
+
 ## Properties
 property | Description | Default
 ----------------|-------------|----------
