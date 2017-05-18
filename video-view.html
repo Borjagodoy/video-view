@@ -80,12 +80,12 @@
 
       setVimeoProperties() {
         this.getVimeoVideoId();
-        this.set('urlVideo', 'http://player.vimeo.com/video/'+this.videoId+'?api=1');
+        this.set('urlVideo', 'https://player.vimeo.com/video/'+this.videoId+'?api=1');
       }
 
       setYoutubeProperties() {
           this.getYoutubeVideoId();
-          this.set('urlVideo', 'http://www.youtube.com/embed/'+this.videoId);
+          this.set('urlVideo', 'https://www.youtube.com/embed/'+this.videoId);
       }
 
       getYoutubeVideoId() {
