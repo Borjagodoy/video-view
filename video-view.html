@@ -1,0 +1,112 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="video-view">
+  <template>
+    <style>
+      :host {
+        display: block;
+        --video-height: 400px;
+        --video-width: 320px;
+      }
+      .video__container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+      }
+
+      .video__container iframe{
+        width: var(--video-width);
+        height: var(--video-height);
+      }
+    </style>
+    <div class="video__container">
+        <iframe sandbox=" allow-same-origin allow-scripts allow-popups" frameborder="0"
+          allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" 
+          src="{{urlVideo}}">
+        </iframe>
+    </div>
+
+  </template>
+
+  <script>
+    /**
+     * `video-view` 
+     * This Polymer2 component transform url's of videos in video views.
+     *videos allow [youtube, vimeo, mp4, webm]
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class VideoView extends Polymer.Element {
+      static get is() { return 'video-view'; }
+      static get properties() {
+        return {
+          url: {
+            type: String,
+            value: '',
+            observer: 'getVideoProperties'
+          },
+          height: {
+            type: String,
+            observer: '_changeHeight'
+          },
+          width: {
+            type: String,
+            observer: '_changeWidth'
+          }
+        
+        };
+      }
+      
+      getVideoProperties() {
+        this._isVimeoVideo() || this._isYoutubeVideo() ? this.getVideoPlatformsProperties() : this.set('urlVideo', this.url);
+      }
+
+      getVideoOthersProperties() {
+        console.log('others');
+      }
+      _isVimeoVideo(link) {
+        return this.url.indexOf('vimeo') !== -1;
+      }
+
+      _isYoutubeVideo(link) {
+        return this.url.indexOf('youtube') !== -1;
+      }
+
+      getVideoPlatformsProperties() {
+        this.url.indexOf('vimeo') !== -1 ? this.setVimeoProperties() : this.setYoutubeProperties()
+      }
+
+      setVimeoProperties() {
+        this.getVimeoVideoId();
+        this.set('urlVideo', 'http://player.vimeo.com/video/'+this.videoId+'?api=1');
+      }
+
+      setYoutubeProperties() {
+          this.getYoutubeVideoId();
+          this.set('urlVideo', 'http://www.youtube.com/embed/'+this.videoId);
+      }
+
+      getYoutubeVideoId() {
+        let videoId = this.url.indexOf('youtube.com') !== -1 ? this.url.split('=')[1] :  this.url.split('/')[3];
+        this.set('videoId', videoId)
+      }
+       
+       getVimeoVideoId() {
+        let videoId = this.url.split('com/')[1];
+        this.set('videoId', videoId)
+      }
+
+      _changeWidth() {
+        this.updateStyles({'--video-width': this.width});
+      }
+
+      _changeHeight() {
+        this.updateStyles({'--video-height': this.height});
+      }
+    }
+
+    window.customElements.define(VideoView.is, VideoView);
+  </script>
+</dom-module>

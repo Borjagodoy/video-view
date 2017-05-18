@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>video-view demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../video-view.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic video-view demo</h3>
+      <demo-snippet>
+        <template>
+          <h1>Youtube videos</h1>
+          <video-view url="https://www.youtube.com/watch?v=G1TS_5ck0nw"></video-view>
+        </template>
+      </demo-snippet>
+      <demo-snippet>
+        <template>
+          <h1>Vimeo videos</h1>
+          <video-view url="https://vimeo.com/213100067" width="100%"></video-view>
+        </template>
+      </demo-snippet>
+      <demo-snippet>
+        <template>
+          <h1>Others videos</h1>
+          <video-view url="https://www.html5rocks.com/en/tutorials/video/basics/devstories.webm" height="200px"></video-view>
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+</html>
