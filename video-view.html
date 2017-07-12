@@ -60,7 +60,7 @@
       }
       
       getVideoProperties() {
-        this._isVimeoVideo() || this._isYoutubeVideo() ? this.getVideoPlatformsProperties() : this.set('urlVideo', this.url);
+        this._isVimeoVideo() || this._isYoutubeVideo() ? this.getVideoPlatformsProperties() :this.getOthers();
       }
 
       getVideoOthersProperties() {
@@ -96,6 +96,10 @@
        getVimeoVideoId() {
         let videoId = this.url.split('com/')[1];
         this.set('videoId', videoId)
+      }
+
+      getOthers() {
+        return (this.url.indexOf('http') !== -1 || this.url.indexOf('https') !== -1) && (this.url.indexOf('.mp4') !== -1 || this.url.indexOf('.oog') !== -1 || this.url.indexOf('.webm') !== -1) ? this.set('urlVideo', this.url) : null;
       }
 
       _changeWidth() {
